@@ -8,18 +8,25 @@ namespace Indian_State_Census_Problem
     {
         public int ReadAndCountStateCensusData(string fileName)
         {
-            using (var reader = new StreamReader(fileName))
-            using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+            if (!File.Exists(fileName))
             {
-                var Records = CSV.GetRecords<StateCensusAnalyserModel>().ToList();
-
-                foreach (var Record in Records)
+                throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_FILE, "Incorrect File Path");
+            }
+            else
+            {
+                using (var reader = new StreamReader(fileName))
+                using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    Console.WriteLine("{0} {1} {2} {3}", Record.State, Record.Population, Record.AreaInSqKm, Record.DensityPerSqKm);
+                    var Records = CSV.GetRecords<StateCensusAnalyserModel>().ToList();
+
+                    foreach (var Record in Records)
+                    {
+                        Console.WriteLine("{0} {1} {2} {3}", Record.State, Record.Population, Record.AreaInSqKm, Record.DensityPerSqKm);
+                    }
+
+                    return Records.Count;
+
                 }
-
-                return Records.Count;
-
             }
         }
 
