@@ -12,7 +12,7 @@ namespace Indian_State_Census_Test
 
             StateCensusAnalyser analyser = new StateCensusAnalyser();
 
-            int actual = analyser.CountCSVData(FilePath);
+            int actual = analyser.ReadAndCountStateCensusData(FilePath);
 
             int expected = 29;
 

@@ -12,11 +12,7 @@ namespace Indian_State_Census_Problem
 
             StateCensusAnalyser analyser = new StateCensusAnalyser();
 
-            analyser.ReadCensusData(FilePath);
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\nTotal number of Indian State Census records are {0}.", analyser.CountCSVData(FilePath));
-            Console.ResetColor();
+            Console.WriteLine("\nTotal number of Indian State Census records are {0}.", analyser.ReadAndCountStateCensusData(FilePath));
 
         }
     }
