@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Indian_State_Census_Problem
 {
-    internal class StateCensusAnalyserModel
+    public class StateCensusAnalyserModel
     {
         // State,Population,AreaInSqKm,DensityPerSqKm
         public string State { get; set; }

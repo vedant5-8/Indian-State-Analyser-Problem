@@ -4,7 +4,7 @@ using System.Globalization;
 
 namespace Indian_State_Census_Problem
 {
-    internal class StateCensusAnalyser
+    public class StateCensusAnalyser
     {
         public void ReadCensusData(string fileName)
         {
@@ -19,5 +19,17 @@ namespace Indian_State_Census_Problem
                 }
             }
         }
+
+        public int CountCSVData(string fileName)
+        {
+            using (var reader = new StreamReader(fileName))
+            using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var Records = CSV.GetRecords<StateCensusAnalyserModel>().ToList();
+
+                return Records.Count;
+            }
+        }
+
     }
 }
