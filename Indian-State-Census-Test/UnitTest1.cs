@@ -23,7 +23,7 @@ namespace Indian_State_Census_Test
         public void TestCase2()
         {
 
-            string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problem\Indian-State-Census-Data.txt";
+            string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problems\Indian-State-Census-Data.csv";
 
             StateCensusAnalyser analyser = new StateCensusAnalyser();
 
