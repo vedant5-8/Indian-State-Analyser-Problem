@@ -10,7 +10,7 @@ namespace Indian_State_Census_Problem
         {
             if (!File.Exists(fileName))
             {
-                throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_FILE, "Incorrect File Path");
+                throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_TYPE, "Incorrect Type");
             }
             else
             {
@@ -25,7 +25,6 @@ namespace Indian_State_Census_Problem
                     }
 
                     return Records.Count;
-
                 }
             }
         }
