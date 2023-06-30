@@ -40,7 +40,7 @@ namespace Indian_State_Census_Test
         [TestMethod]
         public void TestCase3()
         {
-            string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problem\Indian-State-Census-Data.csv";
+            string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problem\Indian-State-Census-Data.json";
 
             StateCensusAnalyser analyser = new StateCensusAnalyser();
 
@@ -50,7 +50,7 @@ namespace Indian_State_Census_Test
             }
             catch (IndianStateCensusCustomException ex)
             {
-                Assert.AreEqual("Incorrect Type", ex.Message);
+                Assert.AreEqual("Incorrect File Type", ex.Message);
             }
         }
     }
