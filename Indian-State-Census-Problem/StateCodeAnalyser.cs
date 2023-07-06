@@ -23,6 +23,16 @@ namespace Indian_State_Census_Problem
                 throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_FILE, "Incorrect File Path");
             }
 
+            var csvfile = File.ReadAllLines(fileName);
+
+            foreach (string line in csvfile)
+            {
+                if (!line.Contains(','))
+                {
+                    throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_DELIMITER, "Incorrect Delimiter");
+                }
+            }
+
             using (var reader = new StreamReader(fileName))
             using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
             {

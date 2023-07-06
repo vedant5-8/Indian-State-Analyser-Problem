@@ -54,5 +54,17 @@ namespace Indian_State_Census_Test
             }
         }
 
+        [TestMethod]
+        public void TestCase4()
+        {
+            string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problem\StateCode - Copy.csv";
+
+            StateCodeAnalyser analyser = new StateCodeAnalyser();
+
+            var exception = Assert.ThrowsException<IndianStateCensusCustomException>(() => analyser.ReadAndCountStateCodeData(FilePath));
+
+            Assert.AreEqual("Incorrect Delimiter", exception.Message);
+        }
+
     }
 }
