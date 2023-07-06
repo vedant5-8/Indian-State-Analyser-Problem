@@ -17,26 +17,33 @@ namespace Indian_State_Census_Problem
                 throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_FILE, "Incorrect File Path");
             }
 
-            else
+            var csvfile = File.ReadAllLines(fileName);
+
+            foreach (string line in csvfile)
             {
-                using (var reader = new StreamReader(fileName))
-                using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+                if (!line.Contains(','))
                 {
-                    var Records = CSV.GetRecords<StateCensusAnalyserModel>().ToList();
-
-                    Console.WriteLine("+------------------+-----------+-------------+-----------------+");
-                    Console.WriteLine("|" + "State".PadLeft(18) + "|" + "Population".PadLeft(11) + "|" + "Area In SQKM".PadLeft(13) + "|" + "Density Per SQKM".PadLeft(17) + "|");
-                    Console.WriteLine("+------------------+-----------+-------------+-----------------+");
-
-
-                    foreach (var Record in Records)
-                    {
-                        Console.WriteLine("|" + Record.State.ToString().PadLeft(18) + "|" + Record.Population.ToString().PadLeft(11) + "|" + Record.AreaInSqKm.ToString().PadLeft(13) + "|" + Record.DensityPerSqKm.ToString().PadLeft(17) + "|");
-                        Console.WriteLine("+------------------+-----------+-------------+-----------------+");
-                    }
-
-                    return Records.Count;
+                    throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_DELIMITER, "Incorrect Delimiter");
                 }
+            }
+
+            using (var reader = new StreamReader(fileName))
+            using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var Records = CSV.GetRecords<StateCensusAnalyserModel>().ToList();
+
+                Console.WriteLine("+------------------+-----------+-------------+-----------------+");
+                Console.WriteLine("|" + "State".PadLeft(18) + "|" + "Population".PadLeft(11) + "|" + "Area In SQKM".PadLeft(13) + "|" + "Density Per SQKM".PadLeft(17) + "|");
+                Console.WriteLine("+------------------+-----------+-------------+-----------------+");
+
+
+                foreach (var Record in Records)
+                {
+                    Console.WriteLine("|" + Record.State.ToString().PadLeft(18) + "|" + Record.Population.ToString().PadLeft(11) + "|" + Record.AreaInSqKm.ToString().PadLeft(13) + "|" + Record.DensityPerSqKm.ToString().PadLeft(17) + "|");
+                    Console.WriteLine("+------------------+-----------+-------------+-----------------+");
+                }
+
+                return Records.Count;
             }
         }
     }

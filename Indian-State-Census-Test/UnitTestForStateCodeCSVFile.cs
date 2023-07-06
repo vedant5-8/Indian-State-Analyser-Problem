@@ -25,11 +25,11 @@ namespace Indian_State_Census_Test
 
             string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problems\StateCode.csv";
 
-            StateCensusAnalyser analyser = new StateCensusAnalyser();
+            StateCodeAnalyser analyser = new StateCodeAnalyser();
 
             try
             {
-                analyser.ReadAndCountStateCensusData(FilePath);
+                analyser.ReadAndCountStateCodeData(FilePath);
             }
             catch (IndianStateCensusCustomException ex)
             {
@@ -42,11 +42,11 @@ namespace Indian_State_Census_Test
         {
             string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problem\StateCode.json";
 
-            StateCensusAnalyser analyser = new StateCensusAnalyser();
+            StateCodeAnalyser analyser = new StateCodeAnalyser();
 
             try
             {
-                analyser.ReadAndCountStateCensusData(FilePath);
+                analyser.ReadAndCountStateCodeData(FilePath);
             }
             catch (IndianStateCensusCustomException ex)
             {
