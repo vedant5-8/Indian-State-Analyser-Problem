@@ -22,25 +22,23 @@ namespace Indian_State_Census_Problem
             {
                 throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_FILE, "Incorrect File Path");
             }
-            else
+
+            using (var reader = new StreamReader(fileName))
+            using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                using (var reader = new StreamReader(fileName))
-                using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+                var Records = CSV.GetRecords<StateCodeAnalyserModel>().ToList();
+
+                Console.WriteLine("+--------+------------------------------+------+----------+");
+                Console.WriteLine("|" + "Sr. No.".PadLeft(8) + "|" + "State Name".PadLeft(30) + "|" + "TIN".PadLeft(6) + "|" + "State Code".PadLeft(10) + "|");
+                Console.WriteLine("+--------+------------------------------+------+----------+");
+
+                foreach (var Record in Records)
                 {
-                    var Records = CSV.GetRecords<StateCodeAnalyserModel>().ToList();
-
+                    Console.WriteLine("|" + Record.SrNo.ToString().PadLeft(8) + "|" + Record.StateName.PadLeft(30) + "|" + Record.TIN.PadLeft(6) + "|" + Record.StateCode.PadLeft(10) + "|");
                     Console.WriteLine("+--------+------------------------------+------+----------+");
-                    Console.WriteLine("|" + "Sr. No.".PadLeft(8) + "|" + "State Name".PadLeft(30) + "|" + "TIN".PadLeft(6) + "|" + "State Code".PadLeft(10) + "|");
-                    Console.WriteLine("+--------+------------------------------+------+----------+");
-
-                    foreach (var Record in Records)
-                    {
-                        Console.WriteLine("|" + Record.SrNo.ToString().PadLeft(8) + "|" + Record.StateName.PadLeft(30) + "|" + Record.TIN.PadLeft(6) + "|" + Record.StateCode.PadLeft(10) + "|");
-                        Console.WriteLine("+--------+------------------------------+------+----------+");
-                    }
-
-                    return Records.Count;
                 }
+
+                return Records.Count;
             }
 
         }

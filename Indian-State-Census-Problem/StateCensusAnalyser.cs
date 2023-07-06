@@ -18,6 +18,13 @@ namespace Indian_State_Census_Problem
             }
 
             var csvfile = File.ReadAllLines(fileName);
+            string actualHeader = "State,Population,AreaInSqKm,DensityPerSqKm";
+            string header = csvfile[0];
+
+            if (!header.Equals(actualHeader))
+            {
+                throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_HEADER, "Incorrect Header");
+            }
 
             foreach (string line in csvfile)
             {

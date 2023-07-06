@@ -7,7 +7,8 @@ namespace Indian_State_Census_Problem
         {
             INCORRECT_FILE,
             INCORRECT_TYPE,
-            INCORRECT_DELIMITER
+            INCORRECT_DELIMITER,
+            INCORRECT_HEADER
         }
 
         public StateCensusExceptionType type;
