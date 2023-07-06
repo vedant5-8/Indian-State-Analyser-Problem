@@ -13,23 +13,31 @@ namespace Indian_State_Census_Problem
     {
         public int ReadAndCountStateCodeData(string fileName)
         {
-            using (var reader = new StreamReader(fileName))
-            using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
+
+            if (!File.Exists(fileName))
             {
-                var Records = CSV.GetRecords<StateCodeAnalyserModel>().ToList();
-
-                Console.WriteLine("+--------+------------------------------+------+----------+");
-                Console.WriteLine("|" + "Sr. No.".PadLeft(8) + "|" + "State Name".PadLeft(30) + "|" + "TIN".PadLeft(6) + "|" + "State Code".PadLeft(10) + "|");
-                Console.WriteLine("+--------+------------------------------+------+----------+");
-
-                foreach (var Record in Records)
+                throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_FILE, "Incorrect File Path");
+            } else
+            {
+                using (var reader = new StreamReader(fileName))
+                using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
                 {
-                    Console.WriteLine("|" + Record.SrNo.ToString().PadLeft(8) + "|" + Record.StateName.PadLeft(30) + "|" + Record.TIN.PadLeft(6) + "|" + Record.StateCode.PadLeft(10) + "|");
-                    Console.WriteLine("+--------+------------------------------+------+----------+");
-                }
+                    var Records = CSV.GetRecords<StateCodeAnalyserModel>().ToList();
 
-                return Records.Count;
+                    Console.WriteLine("+--------+------------------------------+------+----------+");
+                    Console.WriteLine("|" + "Sr. No.".PadLeft(8) + "|" + "State Name".PadLeft(30) + "|" + "TIN".PadLeft(6) + "|" + "State Code".PadLeft(10) + "|");
+                    Console.WriteLine("+--------+------------------------------+------+----------+");
+
+                    foreach (var Record in Records)
+                    {
+                        Console.WriteLine("|" + Record.SrNo.ToString().PadLeft(8) + "|" + Record.StateName.PadLeft(30) + "|" + Record.TIN.PadLeft(6) + "|" + Record.StateCode.PadLeft(10) + "|");
+                        Console.WriteLine("+--------+------------------------------+------+----------+");
+                    }
+
+                    return Records.Count;
+                }
             }
+
         }
     }
 }

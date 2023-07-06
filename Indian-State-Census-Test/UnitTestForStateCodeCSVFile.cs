@@ -18,5 +18,23 @@ namespace Indian_State_Census_Test
 
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void TestCase2()
+        {
+
+            string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problems\StateCode.csv";
+
+            StateCensusAnalyser analyser = new StateCensusAnalyser();
+
+            try
+            {
+                analyser.ReadAndCountStateCensusData(FilePath);
+            }
+            catch (IndianStateCensusCustomException ex)
+            {
+                Assert.AreEqual("Incorrect File Path", ex.Message);
+            }
+        }
     }
 }
