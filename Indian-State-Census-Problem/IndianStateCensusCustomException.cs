@@ -6,7 +6,8 @@ namespace Indian_State_Census_Problem
         public enum StateCensusExceptionType
         {
             INCORRECT_FILE,
-            INCORRECT_TYPE
+            INCORRECT_TYPE,
+            INCORRECT_DELIMITER
         }
 
         public StateCensusExceptionType type;

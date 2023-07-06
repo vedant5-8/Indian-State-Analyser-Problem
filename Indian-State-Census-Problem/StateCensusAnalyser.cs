@@ -16,6 +16,7 @@ namespace Indian_State_Census_Problem
             {
                 throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_FILE, "Incorrect File Path");
             }
+
             else
             {
                 using (var reader = new StreamReader(fileName))
@@ -23,15 +24,20 @@ namespace Indian_State_Census_Problem
                 {
                     var Records = CSV.GetRecords<StateCensusAnalyserModel>().ToList();
 
+                    Console.WriteLine("+------------------+-----------+-------------+-----------------+");
+                    Console.WriteLine("|" + "State".PadLeft(18) + "|" + "Population".PadLeft(11) + "|" + "Area In SQKM".PadLeft(13) + "|" + "Density Per SQKM".PadLeft(17) + "|");
+                    Console.WriteLine("+------------------+-----------+-------------+-----------------+");
+
+
                     foreach (var Record in Records)
                     {
-                        Console.WriteLine("{0} {1} {2} {3}", Record.State, Record.Population, Record.AreaInSqKm, Record.DensityPerSqKm);
+                        Console.WriteLine("|" + Record.State.ToString().PadLeft(18) + "|" + Record.Population.ToString().PadLeft(11) + "|" + Record.AreaInSqKm.ToString().PadLeft(13) + "|" + Record.DensityPerSqKm.ToString().PadLeft(17) + "|");
+                        Console.WriteLine("+------------------+-----------+-------------+-----------------+");
                     }
 
                     return Records.Count;
                 }
             }
         }
-
     }
 }
