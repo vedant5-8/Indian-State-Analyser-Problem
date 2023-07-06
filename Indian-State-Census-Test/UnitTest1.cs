@@ -27,14 +27,10 @@ namespace Indian_State_Census_Test
 
             StateCensusAnalyser analyser = new StateCensusAnalyser();
 
-            try
-            {
-                analyser.ReadAndCountStateCensusData(FilePath);
-            }
-            catch (IndianStateCensusCustomException ex)
-            {
-                Assert.AreEqual("Incorrect File Path", ex.Message);
-            }
+            var exception = Assert.ThrowsException<IndianStateCensusCustomException>(() => analyser.ReadAndCountStateCensusData(FilePath));
+
+            Assert.AreEqual("Incorrect File Path", exception.Message);
+
         }
 
         [TestMethod]
@@ -44,14 +40,9 @@ namespace Indian_State_Census_Test
 
             StateCensusAnalyser analyser = new StateCensusAnalyser();
 
-            try
-            {
-                analyser.ReadAndCountStateCensusData(FilePath);
-            }
-            catch (IndianStateCensusCustomException ex)
-            {
-                Assert.AreEqual("Incorrect File Type", ex.Message);
-            }
+            var exception = Assert.ThrowsException<IndianStateCensusCustomException>(() => analyser.ReadAndCountStateCensusData(FilePath));
+
+            Assert.AreEqual("Incorrect File Type", exception.Message);
         }
 
         [TestMethod]
@@ -61,14 +52,9 @@ namespace Indian_State_Census_Test
 
             StateCensusAnalyser analyser = new StateCensusAnalyser();
 
-            try
-            {
-                analyser.ReadAndCountStateCensusData(FilePath);
-            }
-            catch (IndianStateCensusCustomException ex)
-            {
-                Assert.AreEqual("Incorrect Delimiter", ex.Message);
-            }
+            var exception = Assert.ThrowsException<IndianStateCensusCustomException>(() => analyser.ReadAndCountStateCensusData(FilePath));
+
+            Assert.AreEqual("Incorrect Delimiter", exception.Message);
         }
 
         [TestMethod]

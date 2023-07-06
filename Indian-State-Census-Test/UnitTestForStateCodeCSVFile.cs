@@ -26,15 +26,10 @@ namespace Indian_State_Census_Test
             string FilePath = @"D:\Courses\C#\Indian State Census Project\Indian-State-Census-Problems\StateCode.csv";
 
             StateCodeAnalyser analyser = new StateCodeAnalyser();
+            
+            var exception = Assert.ThrowsException<IndianStateCensusCustomException>(() => analyser.ReadAndCountStateCodeData(FilePath));
 
-            try
-            {
-                analyser.ReadAndCountStateCodeData(FilePath);
-            }
-            catch (IndianStateCensusCustomException ex)
-            {
-                Assert.AreEqual("Incorrect File Path", ex.Message);
-            }
+            Assert.AreEqual("Incorrect File Path", exception.Message);
         }
 
         [TestMethod]
@@ -44,14 +39,9 @@ namespace Indian_State_Census_Test
 
             StateCodeAnalyser analyser = new StateCodeAnalyser();
 
-            try
-            {
-                analyser.ReadAndCountStateCodeData(FilePath);
-            }
-            catch (IndianStateCensusCustomException ex)
-            {
-                Assert.AreEqual("Incorrect File Type", ex.Message);
-            }
+            var exception = Assert.ThrowsException<IndianStateCensusCustomException>(() => analyser.ReadAndCountStateCodeData(FilePath));
+
+            Assert.AreEqual("Incorrect File Type", exception.Message);
         }
 
         [TestMethod]
