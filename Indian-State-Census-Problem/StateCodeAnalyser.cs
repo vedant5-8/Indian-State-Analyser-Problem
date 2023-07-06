@@ -14,10 +14,15 @@ namespace Indian_State_Census_Problem
         public int ReadAndCountStateCodeData(string fileName)
         {
 
-            if (!File.Exists(fileName))
+            if (!fileName.EndsWith(".csv"))
+            {
+                throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_TYPE, "Incorrect File Type");
+            }
+            else if (!File.Exists(fileName))
             {
                 throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_FILE, "Incorrect File Path");
-            } else
+            }
+            else
             {
                 using (var reader = new StreamReader(fileName))
                 using (var CSV = new CsvReader(reader, CultureInfo.InvariantCulture))
