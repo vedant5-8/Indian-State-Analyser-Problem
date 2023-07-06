@@ -25,6 +25,14 @@ namespace Indian_State_Census_Problem
 
             var csvfile = File.ReadAllLines(fileName);
 
+            string actualHeader = "SrNo,StateName,TIN,StateCode";
+            string header = csvfile[0];
+
+            if (!header.Equals(actualHeader))
+            {
+                throw new IndianStateCensusCustomException(IndianStateCensusCustomException.StateCensusExceptionType.INCORRECT_HEADER, "Incorrect Header");
+            }
+
             foreach (string line in csvfile)
             {
                 if (!line.Contains(','))
